@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('apePaterno');
             $table->string('apeMaterno');
             $table->string('dni');
-            $table->string('edad');
+            $table->integer('edad');
             $table->string('apoderado');
             $table->string('telefono');
             $table->string('direccion');
