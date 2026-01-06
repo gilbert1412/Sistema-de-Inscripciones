@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::count();
+        $users = User::count(); 
 
         $widget = [
             'users' => $users,

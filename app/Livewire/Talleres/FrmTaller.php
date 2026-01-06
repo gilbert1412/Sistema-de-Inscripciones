@@ -40,6 +40,7 @@ class FrmTaller extends Component
     {
         $this->nombreTaller = '';
         $this->horarioTaller = '';
+        $this->tallerId = null;
         $this->cupoEstudiantes = 0;
     }  
     #[On('editar-taller')]
