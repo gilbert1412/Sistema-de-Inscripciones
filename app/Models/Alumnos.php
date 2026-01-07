@@ -9,4 +9,9 @@ class Alumnos extends Model
     protected $table = 'alumnos';
 
     protected $guarded = ['created_at', 'updated_at'];
+
+       public function inscripciones()
+    {
+        return $this->hasMany(Inscripciones::class, 'alumnos_id');
+    }
 }

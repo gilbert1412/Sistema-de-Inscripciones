@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Talleres;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -24,13 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::count(); 
+        $dataTalleres = Talleres::where('estado','activo')->get(); 
 
-        $widget = [
-            'users' => $users,
-            //...
-        ];
+      
 
-        return view('home', compact('widget'));
+        return view('home', compact('dataTalleres'));
     }
 }

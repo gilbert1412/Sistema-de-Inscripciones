@@ -80,6 +80,13 @@
             </a>
         </li>
 
+         <li class="nav-item {{ Nav::isRoute('reportes') }}">
+            <a class="nav-link" href="{{ route('reportes') }}">
+                <i class="fas fa-fw fa-hands-helping"></i>
+                <span>{{ __('REPORTES') }}</span>
+            </a>
+        </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 

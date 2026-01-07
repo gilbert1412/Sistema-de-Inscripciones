@@ -7,7 +7,9 @@ use App\Models\Inscripciones;
 use App\Models\Talleres;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
-use Illuminate\Support\Facades\DB;  
+use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\On;
+
 class FrmInscripciones extends Component
 {
      #[Validate('required')] 
@@ -28,8 +30,36 @@ class FrmInscripciones extends Component
     public $direccion_apoderado='';
      #[Validate('required')] 
     public $taller='';
-    
-    
+    public $id;
+    public $inscripcionId;
+//public $talleres = [];
+
+
+
+    public function mount($id = null)
+    {
+        $this->inscripcionId = $id;
+
+        if ($id) {
+            $this->cargarInscripcion($id);
+        }
+    }
+
+    private function cargarInscripcion($id)
+    {
+        $inscripcion = Inscripciones::with('alumno')->findOrFail($id);
+
+        $this->dni = $inscripcion->alumno->dni;
+        $this->edad = $inscripcion->alumno->edad;
+        $this->apellido_paterno = $inscripcion->alumno->apePaterno;
+        $this->apellido_materno = $inscripcion->alumno->apeMaterno;
+        $this->nombre = $inscripcion->alumno->nombre;
+        $this->apoderado = $inscripcion->alumno->apoderado;
+        $this->celular_apoderado = $inscripcion->alumno->telefono;
+        $this->direccion_apoderado = $inscripcion->alumno->direccion;
+        $this->taller = $inscripcion->talleres_id;
+        
+    }
     
     
     public function guardarInscripcion()
@@ -40,11 +70,8 @@ class FrmInscripciones extends Component
 
         $taller = Talleres::lockForUpdate()->findOrFail($this->taller);
 
-        $inscritos = Inscripciones::where('talleres_id', $taller->id)
-            ->where('estado', 'activo')
-            ->count();
-
-        if ($inscritos >= $taller->cupo_maximo) {
+        $inscritos = Inscripciones::where('talleres_id', $taller->id)->count();
+        if ($inscritos >= $taller->cupo) {
             throw new \Exception('El taller ya no tiene cupos disponibles');
         }
 
@@ -63,7 +90,7 @@ class FrmInscripciones extends Component
             'alumnos_id'  => $alumno->id,
             'talleres_id' => $taller->id,
         ]);
-
+        
     });
 
     $this->resetInputFields();
@@ -85,4 +112,6 @@ class FrmInscripciones extends Component
         $talleres =Talleres::where('estado', 'activo')->get();
         return view('livewire.inscripciones.frm-inscripciones',compact('talleres'));
     }
+
+  
 }

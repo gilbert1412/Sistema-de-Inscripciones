@@ -2,8 +2,11 @@
 
 
 namespace App\Livewire\Talleres;
+
+use App\Models\Inscripciones;
 use Livewire\Component;
 use App\Models\Talleres;
+use Illuminate\Validation\Rules\In;
 use Livewire\Attributes\Validate; 
 use Livewire\Attributes\On; 
 class FrmTaller extends Component
@@ -57,7 +60,7 @@ class FrmTaller extends Component
     }
     public function render()
     {
-        
+       
         return view('livewire.talleres.frm-taller');
     }
 }

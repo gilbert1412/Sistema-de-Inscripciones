@@ -102,7 +102,7 @@
                                 <option value="">Seleccione un taller</option>
                                 @foreach ($talleres as $taller)
                                     <option value="{{ $taller->id }}">
-                                        {{ $taller->nombre }}
+                                        {{ $taller->nombre }}das
                                     </option>
                                 @endforeach
                             </select>

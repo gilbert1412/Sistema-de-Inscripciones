@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InscripcionesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +25,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::put('/profile', 'ProfileController@update')->name('profile.update');
-Route::get('/inscripciones', 'InscripcionesController@index')->name('inscripciones');
+
+Route::get('/inscripciones', [InscripcionesController::class, 'index'])
+    ->name('inscripciones');
+Route::get('/reportes', 'ReporteController@index')->name('reportes');
+Route::get('/inscripciones/{id}/editar', [InscripcionesController::class, 'edit'])
+    ->name('inscripciones.edit');
 
 Route::get('/about', function () {
     return view('about');

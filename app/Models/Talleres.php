@@ -9,4 +9,9 @@ class Talleres extends Model
     protected $table = 'talleres';
 
     protected $guarded = ['created_at', 'updated_at']; // Evita la asignación masiva de estos campos 
+
+    public function inscripciones()
+{
+    return $this->hasMany(Inscripciones::class, 'talleres_id');
+}
 }

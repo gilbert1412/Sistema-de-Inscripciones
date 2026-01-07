@@ -9,7 +9,7 @@
         </div>
         <div class="card-body">
             <div class="row justify-content-center">
-                <livewire:inscripciones.frm-inscripciones  :id="$id"/>
+                <livewire:inscripciones.reporte />
             </div>
         </div>
 
@@ -17,5 +17,3 @@
 
     </div>
 @endsection
-
-

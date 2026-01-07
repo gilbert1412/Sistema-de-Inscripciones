@@ -9,7 +9,13 @@ class InscripcionesController extends Controller
 {
     public function index()
     {
-        $talleres =Talleres::where('estado', 'activo')->get();
-        return view('inscripciones', );
+        $talleres = Talleres::where('estado', 'activo')->get();
+        $id = null; // crear
+        return view('inscripciones', compact('talleres', 'id'));
+    }
+    public function edit($id)
+    {
+        $talleres = Talleres::where('estado', 'activo')->get();
+        return view('inscripciones', compact('talleres', 'id'));
     }
 }
